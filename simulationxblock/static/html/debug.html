@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Socket.IO Client Loader</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <script>
+    // Dynamically load the Socket.IO client script
+    $.getScript("https://cdn.socket.io/4.6.1/socket.io.min.js")
+      .done(function () {
+        // Attach the loaded script to the `window` object
+        if (typeof io !== "undefined") {
+          window.io = io; // Expose `io` globally
+          console.log("Socket.IO client loaded and attached to `window.io`");
+          
+          // Example: Connect to a Socket.IO server
+          const socket = window.io("http://localhost:12345");
+          socket.on("connect", function () {
+            console.log("Connected to the server");
+          });
+        } else {
+          console.error("Socket.IO client failed to load.");
+        }
+      })
+      .fail(function (jqxhr, settings, exception) {
+        console.error("Failed to load Socket.IO script:", exception);
+      });
+  </script>
+</body>
+</html>

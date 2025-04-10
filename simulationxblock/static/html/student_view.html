@@ -1,0 +1,27 @@
+{% load i18n %}
+
+<!-- {{ path }} - {{ block_locator }} -->
+{% if simulation_xblock.state_definitions %}
+<div class="simulation_xblock">
+    <!-- {% if simulation_xblock.has_score %}
+    <p> ({{ simulation_xblock.weighted_score}}/{{ simulation_xblock.points | floatformat:1 }} {% trans "points" %}) {% trans simulation_xblock.submission_status %}</p>
+    {% endif %} -->
+    
+    <div class="office-question-bank-student">
+      <!-- <h2>Question Bank</h2> -->
+      <div id="question-text">Loading question... </div>
+      <button id="submit-answer">Gửi câu trả lời</button>
+      <div id="status-socket"></div>
+      <p id="feedback"></p>
+      <div id="log"></div>
+    </div>
+
+    {% if simulation_xblock.is_past_due %}
+    <div class='simulation_xblock-warning'>
+        <h3>{% trans "The due date for this subsection has passed. Your response will be recorded, but not graded." %}<h3>
+    </div>
+    {% endif %}
+</div>
+{% else %}
+<h2>{% trans "No content. Please input state definition content." %}<h2>
+{% endif %}
