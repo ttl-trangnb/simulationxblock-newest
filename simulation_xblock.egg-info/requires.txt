@@ -1,0 +1,4 @@
+XBlock
+
+[deepdiff]
+deepdiff==8.0.1
